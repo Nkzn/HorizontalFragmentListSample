@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "info.nkzn.android.sample.horizontal_fragment_list"
-        minSdkVersion 22
+        minSdkVersion 21
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -24,4 +24,6 @@ dependencies {
 
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.android.support:recyclerview-v7:22.1.1'
+
+    compile 'com.jakewharton:butterknife:6.1.0'
 }
