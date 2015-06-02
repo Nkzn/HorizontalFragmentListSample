@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -42,9 +43,10 @@ public class HorizontalListActivity extends AppCompatActivity {
 
         for (Fragment fragment: fragments) {
             final View fragmentContainer = getLayoutInflater().inflate(R.layout.view_fragment_container, llContainer, false);
-            fragmentContainer.setId(View.generateViewId());
+            fragmentContainer.setId(fragment.hashCode()); // umm... this is not unique...
             llContainer.addView(fragmentContainer);
 
+            Log.d(TAG, "id: " + fragmentContainer.getId());
             fragmentTransaction.add(fragmentContainer.getId(), fragment);
         }
 
