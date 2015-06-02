@@ -1,5 +1,6 @@
 package info.nkzn.android.sample.horizontal_fragment_list.scroll;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -43,7 +44,7 @@ public class HorizontalListActivity extends AppCompatActivity {
 
         for (Fragment fragment: fragments) {
             final View fragmentContainer = getLayoutInflater().inflate(R.layout.view_fragment_container, llContainer, false);
-            fragmentContainer.setId(fragment.hashCode()); // umm... this is not unique...
+            fragmentContainer.setId(generateViewId(fragment));
             llContainer.addView(fragmentContainer);
 
             Log.d(TAG, "id: " + fragmentContainer.getId());
@@ -51,5 +52,13 @@ public class HorizontalListActivity extends AppCompatActivity {
         }
 
         fragmentTransaction.commit();
+    }
+
+    int generateViewId(Fragment fragment) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            return View.generateViewId();
+        }
+
+        return fragment.hashCode(); // buggy implement
     }
 }
